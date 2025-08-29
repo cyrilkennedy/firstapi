@@ -1,0 +1,78 @@
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #ccc;
+}
+
+.input-field {
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: 1px solid #444;
+  background-color: #111;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.input-field:focus {
+  border-color: #32cd32;
+  box-shadow: 0 0 10px rgba(50, 205, 50, 0.5);
+}
+
+.error-text {
+  color: #ff4d4d;
+  font-size: 0.85rem;
+  margin-top: 3px;
+}
+
+/* ===== CARD FLEX FOR EXPIRY & CVC ===== */
+.card-flex {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.flex-item {
+  flex: 1 1 45%;
+}
+
+/* ===== RESPONSIVE STYLES ===== */
+@media (max-width: 768px) {
+  .flex-item {
+    flex: 1 1 100%;
+  }
+
+  .input-field {
+    font-size: 0.95rem;
+    padding: 8px 12px;
+  }
+
+  label {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .input-field {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+  }
+
+  label {
+    font-size: 0.9rem;
+  }
+}
