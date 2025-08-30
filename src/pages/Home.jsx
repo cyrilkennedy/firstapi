@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import CryptoCard from "../components/CoinGrid";
 
 import "./home.css";
+import HomeHeader from "./header";
 
 const COINGECKO =
   "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=12&page=1&sparkline=false";
@@ -33,30 +34,21 @@ export default function HomePage() {
   }, []);
 
   const handleBuy = (coin) => {
-    setPortfolio((prev) => [...prev, coin]); // save to demo portfolio
+    setPortfolio((prev) => [...prev, coin]);
     alert(`✅ You bought ${coin.name} (demo)!`);
   };
 
-  return (
-    <div className="home-container">
-      <header className="home-header">
-        <div className="header-box">
-          <div>
-            <h1 className="app-title">TradeSmart</h1>
-            <p className="app-subtitle">
-              Buy & sell top cryptocurrencies — demo only.
-            </p>
-          </div>
-          <div className="header-info">
-            <div>Featured: Bitcoin, Ethereum, Tether</div>
-            <div className="header-small">Live prices (demo)</div>
-          </div>
-        </div>
+ return (
+    <div className="home-page">
+      {/* HEADER ALWAYS AT THE TOP */}
+      <HomeHeader />
 
+      {/* MAIN CONTENT */}
+      <div className="home-container">
         <main className="main-section">
           <h2 className="section-title">Top Coins</h2>
           {loading ? (
-            <div>Loading...</div>
+            <div className="loading">Loading...</div>
           ) : (
             <div className="coin-grid">
               {coins.map((c) => (
@@ -65,7 +57,6 @@ export default function HomePage() {
             </div>
           )}
 
-          {/* Portfolio Section */}
           {portfolio.length > 0 && (
             <div className="portfolio-section">
               <h2 className="section-title">My Demo Portfolio</h2>
@@ -79,7 +70,7 @@ export default function HomePage() {
             </div>
           )}
         </main>
-      </header>
+      </div>
     </div>
   );
 }

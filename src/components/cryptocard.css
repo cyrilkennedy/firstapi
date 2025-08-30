@@ -1,24 +1,48 @@
-/* CryptoCard.css - Complete CSS for CryptoCard Component */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+/* CryptoCard Component - Modern Dark Theme */
 .crypto-card {
-  background: white;
-  border-radius: 12px;
+  background: rgba(30, 41, 59, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(71, 85, 105, 0.3);
+  border-radius: 20px;
   padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e5e7eb;
-  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   min-height: 180px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Animated gradient border effect */
+.crypto-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, #10b981, #3b82f6, #8b5cf6);
+  border-radius: 20px;
+  opacity: 0;
+  filter: blur(1px);
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.crypto-card:hover::before {
+  opacity: 0.3;
 }
 
 .crypto-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  border-color: #4f46e5;
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(16, 185, 129, 0.2);
 }
 
+/* Header section with icon and info */
 .crypto-header {
   display: flex;
   align-items: center;
@@ -28,16 +52,33 @@
 .crypto-icon {
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
   font-weight: 700;
   font-size: 1.25rem;
   text-transform: uppercase;
-  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  position: relative;
+}
+
+.crypto-icon::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, #10b981, #3b82f6);
+  border-radius: 50%;
+  opacity: 0;
+  filter: blur(4px);
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.crypto-card:hover .crypto-icon::after {
+  opacity: 0.5;
 }
 
 .crypto-info {
@@ -48,7 +89,7 @@
 .crypto-name {
   font-size: 1rem;
   font-weight: 600;
-  color: #1f2937;
+  color: #f1f5f9;
   margin-bottom: 0.25rem;
   white-space: nowrap;
   overflow: hidden;
@@ -57,43 +98,62 @@
 
 .crypto-symbol {
   font-size: 0.875rem;
-  color: #6b7280;
+  color: #94a3b8;
   font-weight: 500;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
+/* Price display */
 .crypto-price {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #059669;
-  font-family: 'Courier New', monospace;
+  color: #10b981;
+  font-family: 'Monaco', 'Menlo', monospace;
   margin: 0.5rem 0;
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
 }
 
+/* Buy button */
 .buy-btn {
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  color: white;
+  color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 0.75rem 1.5rem;
   font-size: 0.875rem;
   font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.buy-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.buy-btn:hover::before {
+  transform: translateX(100%);
 }
 
 .buy-btn:hover {
   background: linear-gradient(135deg, #059669 0%, #047857 100%);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(16, 185, 129, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
 }
 
 .buy-btn:active {
   transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
 }
 
 .buy-btn:focus {
@@ -101,85 +161,192 @@
   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
 }
 
-/* Responsive adjustments */
+/* Crypto-specific icon colors */
+.crypto-card[data-symbol="BTC"] .crypto-icon { 
+  background: linear-gradient(135deg, #f7931a 0%, #e8830e 100%); 
+}
+.crypto-card[data-symbol="ETH"] .crypto-icon { 
+  background: linear-gradient(135deg, #627eea 0%, #4f5db5 100%); 
+}
+.crypto-card[data-symbol="USDT"] .crypto-icon { 
+  background: linear-gradient(135deg, #26a17b 0%, #1e8968 100%); 
+}
+.crypto-card[data-symbol="BNB"] .crypto-icon { 
+  background: linear-gradient(135deg, #f3ba2f 0%, #e6a91f 100%); 
+}
+.crypto-card[data-symbol="ADA"] .crypto-icon { 
+  background: linear-gradient(135deg, #0033ad 0%, #002a8f 100%); 
+}
+.crypto-card[data-symbol="SOL"] .crypto-icon { 
+  background: linear-gradient(135deg, #9945ff 0%, #7b2cbf 100%); 
+}
+.crypto-card[data-symbol="DOT"] .crypto-icon { 
+  background: linear-gradient(135deg, #e6007a 0%, #c4005a 100%); 
+}
+.crypto-card[data-symbol="MATIC"] .crypto-icon { 
+  background: linear-gradient(135deg, #8247e5 0%, #6c31c7 100%); 
+}
+
+/* Price change indicator */
+.price-change {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.price-change.positive { 
+  color: #10b981; 
+}
+
+.price-change.positive::before {
+  content: "▲";
+  font-size: 0.625rem;
+}
+
+.price-change.negative { 
+  color: #ef4444; 
+}
+
+.price-change.negative::before {
+  content: "▼";
+  font-size: 0.625rem;
+}
+
+/* Loading state */
+.crypto-card.loading {
+  background: linear-gradient(90deg, 
+    rgba(30, 41, 59, 0.8) 25%, 
+    rgba(51, 65, 85, 0.8) 50%, 
+    rgba(30, 41, 59, 0.8) 75%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.crypto-card.loading * {
+  opacity: 0.6;
+}
+
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+/* Status indicator dot */
+.crypto-card::after {
+  content: "";
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  animation: pulse-status 2s infinite;
+  box-shadow: 0 0 4px rgba(16, 185, 129, 0.5);
+}
+
+@keyframes pulse-status {
+  0%, 100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+/* Mobile Responsive */
 @media (max-width: 640px) {
   .crypto-card {
-    padding: 1rem;
+    padding: 1.25rem;
     min-height: 160px;
+    gap: 0.75rem;
   }
-  
+
   .crypto-icon {
     width: 40px;
     height: 40px;
     font-size: 1rem;
   }
-  
-  .crypto-name {
-    font-size: 0.875rem;
+
+  .crypto-name { 
+    font-size: 0.875rem; 
   }
   
-  .crypto-price {
-    font-size: 1.25rem;
-  }
-  
-  .buy-btn {
-    padding: 0.5rem 1rem;
+  .crypto-symbol {
     font-size: 0.75rem;
   }
-}
-
-/* Animation for loading state */
-@keyframes shimmer {
-  0% {
-    background-position: -468px 0;
+  
+  .crypto-price { 
+    font-size: 1.25rem; 
   }
-  100% {
-    background-position: 468px 0;
+  
+  .buy-btn { 
+    padding: 0.625rem 1.25rem; 
+    font-size: 0.75rem; 
   }
 }
 
-.crypto-card.loading {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 400% 100%;
-  animation: shimmer 1.5s infinite;
+/* Tablet */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .crypto-card {
+    min-height: 170px;
+  }
+  
+  .crypto-icon {
+    width: 44px;
+    height: 44px;
+  }
 }
 
-/* Different color variations for crypto icons based on symbol */
-.crypto-card[data-symbol="BTC"] .crypto-icon {
-  background: linear-gradient(135deg, #f7931a 0%, #e8830e 100%);
+/* Desktop enhancements */
+@media (min-width: 1025px) {
+  .crypto-card:hover {
+    transform: translateY(-12px) scale(1.03);
+  }
+  
+  .buy-btn:hover {
+    transform: translateY(-3px);
+  }
 }
 
-.crypto-card[data-symbol="ETH"] .crypto-icon {
-  background: linear-gradient(135deg, #627eea 0%, #4f5db5 100%);
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .crypto-card {
+    border: 2px solid #10b981;
+    background: rgba(15, 23, 42, 0.95);
+  }
+  
+  .crypto-name,
+  .crypto-symbol {
+    color: #ffffff;
+  }
 }
 
-.crypto-card[data-symbol="USDT"] .crypto-icon {
-  background: linear-gradient(135deg, #26a17b 0%, #1e8968 100%);
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .crypto-card,
+  .crypto-card::before,
+  .crypto-card::after,
+  .buy-btn,
+  .buy-btn::before {
+    animation: none;
+    transition: none;
+  }
+  
+  .crypto-card:hover,
+  .buy-btn:hover {
+    transform: none;
+  }
 }
 
-.crypto-card[data-symbol="BNB"] .crypto-icon {
-  background: linear-gradient(135deg, #f3ba2f 0%, #e6a91f 100%);
-}
-
-.crypto-card[data-symbol="ADA"] .crypto-icon {
-  background: linear-gradient(135deg, #0033ad 0%, #002a8f 100%);
-}
-
-.crypto-card[data-symbol="SOL"] .crypto-icon {
-  background: linear-gradient(135deg, #9945ff 0%, #7b2cbf 100%);
-}
-
-/* Price change indicator (for future use) */
-.price-change {
-  font-size: 0.75rem;
-  font-weight: 500;
-  margin-top: 0.25rem;
-}
-
-.price-change.positive {
-  color: #059669;
-}
-
-.price-change.negative {
-  color: #dc2626;
+/* Focus states for accessibility */
+.crypto-card:focus-within {
+  outline: 2px solid #10b981;
+  outline-offset: 4px;
 }
